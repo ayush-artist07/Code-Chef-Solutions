@@ -1,83 +1,77 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
-#define maxi 3E5+9
-
+#define maxi 3E5+5
+ 
 int main(){
-	
-	int t;
-	cin>>t;
-	
-	while(t--){
-		
-		int N,M;
-		cin>>N>>M;
-		
-		int arr[N],ans[N],destination[M];
-		
-		for(int i=0;i<N;i++){
-			
-			cin>>arr[i];				
-		}
-		
-		for(int i=0;i<N;i++)
-		{
-			if(i==0){
+    int t;
+    cin>>t;
+    while(t--){
+        
+           	int n,m; 
+    		cin>>n>>m;
+    		int a[n],b[m];
+    		int i,j;
+    
+		for (i=0;i<n;i++){
+        		cin>>a[i];
+   			}
+   			 
+    	for(i=0;i<m;i++){
+        		cin>>b[i];
+    		}
+    		
+    		int ans[n]; 		
+    		
+    		
+    	for(i=0;i<n;i++){
+    			
+       			if(i==0){
         			ans[i]=0;
        			}
        			
-				else if(arr[i]!=0){
+				else if(a[i]!=0){
         			ans[i]=0;
        			}
        			
        			else{
         			ans[i]=maxi; 
  		       } 
-		}
-		
-		int right = -1;
-		for(int i = 0;i<N;i++){
-			
-			if(arr[i] == 1)
-				right = i;	
-			
-						
-			if(right != -1){
-				
-				if(arr[i]==0)
-					ans[i] = min(ans[i],i-right);					
-			}			
-		}
-		
-		int left = -1;
-		for(int i = N-1;i>=0;i++){
-			
-			if(arr[i] == 2)
-				left = i;	
-			
-						
-			if(left != -1){
-				
-				if(arr[i]==0)
-					ans[i] = min(ans[i],left - i);					
-			}
-		}
-		
-		for(int i = 0;i<M;i++){	
-		
-			int j = destination[i];
-				
-        	if(ans[j]!=maxi){
+   			}
+   			
+   			int low=-1,high=-1;
+   			
+   	for(i=0;i<n;i++){
+       if(a[i]==1){
+           high=i;
+       }
+       if(high!=-1){
+           if(a[i]==0){
+            ans[i]=min(ans[i],i-high);
+           }
+       }
+   }
+   
+   	
+    for(i=n-1;i>=0;i--){
+        if(a[i]==2){
+            low=i;  
+        }
+        if(low!=-1){
+            if(a[i]==0){ 
+                ans[i] =min(ans[i],low-i);
+            }
+        }
+    }
+    for(i=0;i<m;i++){
+        j=b[i]-1;
+        if(ans[j]!=maxi){
             cout<<ans[j]<<" ";
-        		}
-        	else{
+        }
+        else{
             cout<<-1<<" ";
-        	}
-        	
-			
-			}
-		
-		cout<<endl;			
-	}	
-		
-		return 0;
+        }
+        
+    }
+   cout<<endl;
 }
+    }
